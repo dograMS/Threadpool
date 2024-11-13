@@ -1,6 +1,4 @@
-#include <memory>
-#include <mutex>
-#include <condition_variable>
+#include "Common.hpp"
 
 template <typename T>
 class ThreadSafeQueue

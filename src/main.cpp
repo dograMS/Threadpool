@@ -1,11 +1,18 @@
-#include <iostream>
-#include <ThreadSafeQueue.hpp>
+#include "Context.hpp"
 #include <chrono>
-#include <thread>
 
+int main(int argc, char *argv[])
+{
+  Context threadpool;
 
-int main(int argc, char *argv[]){
-	ThreadSafeQueue<int> th;
-	
-	return 0;
+  for(int i = 1; i < 10; i++)
+  {
+    threadpool.post([i](){
+	std::cout << "work - " << i << "\n";
+	});
+  }
+  
+  threadpool.run();
+  std::this_thread::sleep_for(std::chrono::seconds(2));
+  return 0;
 }
